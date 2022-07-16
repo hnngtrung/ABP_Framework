@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using acme.student.Localization;
 using acme.student.MultiTenancy;
+using acme.student.Permissions;
 using Volo.Abp.Identity.Web.Navigation;
 using Volo.Abp.SettingManagement.Web.Navigation;
 using Volo.Abp.TenantManagement.Web.Navigation;
@@ -33,6 +34,18 @@ public class studentMenuContributor : IMenuContributor
                 order: 0
             )
         );
+        context.Menu.AddItem(new ApplicationMenuItem("TongQuan", "Tong Quan", icon: "fa fa-sign", order: 1));
+
+        var lopHoc = await context.IsGrantedAsync(studentPermissions.LopHoc.Default);
+        if(lopHoc)
+        {
+            context.Menu.AddItem(new ApplicationMenuItem("LopHoc", "Lop Hoc", icon: "fa fa-circle", order: 2, url: "/Commons/LopHoc"));
+        }
+        var sinhVien = await context.IsGrantedAsync(studentPermissions.SinhVien.Default);
+        if (lopHoc)
+        {
+            context.Menu.AddItem(new ApplicationMenuItem("SinhVien", "Sinh Vien", icon: "fa fa-users", order: 3, url: "/Commons/SinhVien"));
+        }
 
         if (MultiTenancyConsts.IsEnabled)
         {
