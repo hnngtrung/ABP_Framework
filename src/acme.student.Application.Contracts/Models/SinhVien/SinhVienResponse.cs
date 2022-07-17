@@ -10,6 +10,6 @@ namespace acme.student.Models.SinhVien
         public string name { get; set; }
         public int tuoi { get; set; }
         public int cmnd { get; set; }
-        public string LopHocID { get; set; }
+        public string LopHoc { get; set; }
     }
 }

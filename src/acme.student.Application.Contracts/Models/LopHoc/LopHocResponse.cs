@@ -7,7 +7,7 @@ namespace acme.student.Models.LopHoc
 {
     public class LopHocResponse : EntityDto<Guid>
     {
-        public string name { get; set; }
-        public string ghichu { get; set; }
+        public string Name { get; set; }
+        public string ghiChu { get; set; }
     }
 }

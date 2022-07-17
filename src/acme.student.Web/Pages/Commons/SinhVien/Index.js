@@ -122,7 +122,7 @@
             bLengthChange: false,
             scrollCollapse: true,
             ordering: false,
-            ajax: abp.libs.datatables.createAjax(platForm.core.commons.nhanVien.search, function () {
+            ajax: abp.libs.datatables.createAjax(acme.student.commons.sinhVien.search, function () {
                 return input;
             }),
             columnDefs: [

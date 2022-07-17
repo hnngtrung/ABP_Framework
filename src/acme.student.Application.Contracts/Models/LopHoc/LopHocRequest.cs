@@ -13,6 +13,6 @@ namespace acme.student.Models.LopHoc
         public string name { get; set; }
         [StringLength(1000)]
         [Display(Name = "GhiChuLopHoc")]
-        public string ghichu { get; set; }
+        public string ghiChu { get; set; }
     }
 }

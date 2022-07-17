@@ -30,7 +30,7 @@ namespace acme.student.Web.Pages.Commons.SinhVien
 
         public virtual async Task OnGetAsync()
         {
-            var lopHocList = await _lophocappservice.GetListAsync(new PagedAndSortedResultRequestDto { MaxResultCount = 1000 });
+            var lopHocList = await _lopHocAppService.GetListAsync(new PagedAndSortedResultRequestDto { MaxResultCount = 1000 });
             LopHocList = new List<SelectListItem>();
             LopHocList.Add(new SelectListItem
             {
@@ -43,7 +43,7 @@ namespace acme.student.Web.Pages.Commons.SinhVien
                 LopHocList.Add(new SelectListItem
                 {
                     Value = item.Id.ToString(),
-                    Text = item.name.ToString()
+                    Text = item.Name.ToString()
                 });
             }
         }

@@ -15,6 +15,7 @@ public class studentWebAutoMapperProfile : Profile
         CreateMap<SinhVienRequest, SinhVien>();
         CreateMap<SinhVienResponse, SinhVienRequest>();
 
+
         //LopHoc
         CreateMap<LopHoc, LopHocResponse>();
         CreateMap<LopHocRequest, LopHoc>();

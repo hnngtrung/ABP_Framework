@@ -21,7 +21,7 @@ namespace acme.student.Web.Pages.Commons.SinhVien
         [BindProperty]
         public SinhVienModel ViewModel { get; set; }
 
-        public List<SelectListItem> BoPhanList { get; set; }
+        public List<SelectListItem> LopHocList { get; set; }
 
         private readonly ISinhVienAppService _service;
 
@@ -38,8 +38,8 @@ namespace acme.student.Web.Pages.Commons.SinhVien
             ViewModel = ObjectMapper.Map<SinhVienResponse, SinhVienModel>(response);
 
             var lopHocList = await _lopHocService.GetListAsync(new PagedAndSortedResultRequestDto { MaxResultCount = 1000 });
-            BoPhanList = new List<SelectListItem>();
-            BoPhanList.Add(new SelectListItem
+            LopHocList = new List<SelectListItem>();
+            LopHocList.Add(new SelectListItem
             {
                 Value = "",
                 Text = "Chọn Lớp Học",
@@ -47,10 +47,10 @@ namespace acme.student.Web.Pages.Commons.SinhVien
             });
             foreach (var item in lopHocList.Items)
             {
-                BoPhanList.Add(new SelectListItem
+                LopHocList.Add(new SelectListItem
                 {
                     Value = item.Id.ToString(),
-                    Text = item.name.ToString()
+                    Text = item.Name.ToString()
                 });
             }
         }
@@ -63,8 +63,8 @@ namespace acme.student.Web.Pages.Commons.SinhVien
 
         public class SinhVienModel : SinhVienRequest
         {
-            [SelectItems(nameof(BoPhanList))]
-            [Display(Name = "BoPhan")]
+            [SelectItems(nameof(LopHocList))]
+            [Display(Name = "lopHoc")]
             public override Guid LopHocId { get; set; }
         }
     }
