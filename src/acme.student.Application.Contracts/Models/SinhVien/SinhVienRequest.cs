@@ -16,6 +16,6 @@ namespace acme.student.Models.SinhVien
         [Display(Name = "SinhViencmnd", Prompt = "PlaceHolder")]
         public int cmnd { get; set; }
         [Required(ErrorMessage = "Required")]
-        public virtual Guid LopHocId { get; set; }
+        public virtual Guid LopHocId  { get; set; }
     }
 }

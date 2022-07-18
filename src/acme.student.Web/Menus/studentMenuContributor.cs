@@ -42,7 +42,7 @@ public class studentMenuContributor : IMenuContributor
             context.Menu.AddItem(new ApplicationMenuItem("LopHoc", "Lop Hoc", icon: "fa fa-circle", order: 2, url: "/Commons/LopHoc"));
         }
         var sinhVien = await context.IsGrantedAsync(studentPermissions.SinhVien.Default);
-        if (lopHoc)
+        if (sinhVien)
         {
             context.Menu.AddItem(new ApplicationMenuItem("SinhVien", "Sinh Vien", icon: "fa fa-users", order: 3, url: "/Commons/SinhVien"));
         }

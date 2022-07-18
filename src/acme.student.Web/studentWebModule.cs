@@ -38,6 +38,8 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using acme.student.Permissions;
 
 namespace acme.student.Web;
 
@@ -86,6 +88,15 @@ public class studentWebModule : AbpModule
         ConfigureNavigationServices();
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
+        Configure<RazorPagesOptions>(options =>
+        {
+            options.Conventions.AuthorizePage("/Lop/Index", studentPermissions.LopHoc.Default);
+            options.Conventions.AuthorizePage("/Lop/CreateModal", studentPermissions.LopHoc.Create);
+            options.Conventions.AuthorizePage("/Lop/EditModal", studentPermissions.LopHoc.Update);
+            options.Conventions.AuthorizePage("/SinhVien/Index", studentPermissions.SinhVien.Default);
+            options.Conventions.AuthorizePage("/SinhVien/CreateModal", studentPermissions.SinhVien.Create);
+            options.Conventions.AuthorizePage("/SinhVien/EditModal", studentPermissions.SinhVien.Update);
+        });
     }
 
     private void ConfigureUrls(IConfiguration configuration)

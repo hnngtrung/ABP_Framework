@@ -7,7 +7,7 @@ namespace acme.student.Models.Search
     public class ConditionSearchRequest
     {
         public string keyword { get; set; }
-        public int SkipCount { get; set; }
-        public int MaxResutlCount { get; set; }
+        public int skipCount { get; set; }
+        public int maxResutlCount { get; set; }
     }
 }

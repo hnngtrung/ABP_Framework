@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using acme.student.Entities.Commons;
 using acme.student.Models.LopHoc;
 using acme.student.Models.Search;
+using acme.student.Permissions;
 using acme.student.Services;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
@@ -25,7 +26,11 @@ namespace acme.student.Commons
     {
         public LopHocAppService(IRepository<LopHoc, Guid> repository) : base(repository)
         {
-
+            GetPolicyName = studentPermissions.LopHoc.Default;
+            GetListPolicyName = studentPermissions.LopHoc.Default;
+            CreatePolicyName = studentPermissions.LopHoc.Create;
+            UpdatePolicyName = studentPermissions.LopHoc.Update;
+            DeletePolicyName = studentPermissions.LopHoc.Delete;
 
         }
 
@@ -36,11 +41,12 @@ namespace acme.student.Commons
             {
                 condition.keyword = "";
             }
+            condition.maxResutlCount = 10;
             PagedResultDto<LopHocResponse> listResultDto = new PagedResultDto<LopHocResponse> ();
             var list = await this.GetListAsync(input);
-            var resultSearch = list.Items.Where(x => x.Name.Contains(condition.keyword));
+            var resultSearch = list.Items.Where(x => x.Name.Contains(condition.keyword)).ToList();
             listResultDto.TotalCount = resultSearch.Count();
-            listResultDto.Items = resultSearch.Skip(condition.SkipCount).Take(condition.MaxResutlCount).ToList();
+            listResultDto.Items = resultSearch.Skip(condition.skipCount).Take(condition.maxResutlCount).ToList();
             return listResultDto;
             
         }

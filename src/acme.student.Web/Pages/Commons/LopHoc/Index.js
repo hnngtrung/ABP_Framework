@@ -105,8 +105,8 @@
         dataTable.destroy();
         var input = {
             'keyword': $("#keyword").val(),
-            'SkipCount': 0,
-            'MaxResultCount': 10
+            'skipCount': 0,
+            'maxResultCount': 10
         }
         dataTable = $('#LopHocTable').DataTable(abp.libs.datatables.normalizeConfiguration({
             processing: true,
